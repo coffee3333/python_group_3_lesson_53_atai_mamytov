@@ -1,4 +1,6 @@
 from django.core.paginator import Paginator
+from django.db.models.deletion import ProtectedError
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -56,3 +58,11 @@ class ProjectDeleteView(DeleteView):
     model = Project
     context_object_name = 'project'
     success_url = reverse_lazy('project_ls')
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+            self.object.delete()
+            return HttpResponseRedirect(self.get_success_url())
+        except ProtectedError:
+            return HttpResponse("<h2>This object is protected<h2/>")
