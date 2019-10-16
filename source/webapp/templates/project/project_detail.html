@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{#{% block menu %}#}
+{#    <a href="{% url "task_track_edit" tracker.pk %}" class="btn btn-outline-light">Edit</a>#}
+{#    <a href="{% url "task_track_delete" tracker.pk %}" class="btn btn-outline-light">Delete</a>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <h1 class="mt-2">{{ project.title }}</h1>
+    <div class="pre">{{ project.description }}</div>
+    <p>Created at: {{ project.created_at }}</p>
+    <a href="{% url 'project_ls' %}"class="btn btn-outline-success btn-block">Back</a>
+{% endblock %}

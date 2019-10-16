@@ -32,5 +32,7 @@ urlpatterns = [
     path('statuses/edit/<int:pk>', StatusesUpdateView.as_view(), name='status_edit'),
     path('types/delete/<int:pk>', TypeDeleteView.as_view(), name='type_delete'),
     path('statuses/delete/<int:pk>', StatusesDeleteView.as_view(), name='status_delete'),
-    path('projects/', ProjectView.as_view(), name='project_ls')
+    path('projects/', ProjectView.as_view(), name='project_ls'),
+    path('project/<int:pk>', ProjectDetailView.as_view(), name='project_detail'),
+    path('project/create/', ProjectCreateView.as_view(), name='project_create')
 ]

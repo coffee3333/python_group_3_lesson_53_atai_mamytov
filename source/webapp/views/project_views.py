@@ -13,22 +13,20 @@ class ProjectView(ListView):
     paginate_by = 5
     paginate_orphans = 1
 
-#
-# class TaskTrackerView(DetailView):
-#     template_name = 'tracker/TaskTrack.html'
-#     context_key = 'tracker'
-#     model = Tracker
-#     key_kwarg = 'pk'
-#
-#
-# class TaskTrackerCreateView(CreateView):
-#     template_name = 'tracker/create.html'
-#     model = Tracker
-#     form_class = TrackerForm
-#
-#     def get_success_url(self):
-#         return reverse('task_track', kwargs={'pk': self.object.pk})
-#
+
+class ProjectDetailView(DetailView):
+    template_name = 'project/project_detail.html'
+    context_key = 'project'
+    model = Project
+    key_kwarg = 'pk'
+
+
+class ProjectCreateView(CreateView):
+    template_name = 'project/project_create.html'
+    model = Project
+    form_class = ProjectForm
+    success_url = reverse_lazy('project_ls')
+
 #
 # class TaskTrackerUpdateView(UpdateView):
 #     model = Tracker

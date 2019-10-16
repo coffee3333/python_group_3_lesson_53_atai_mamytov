@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 
-{#{% block menu %}#}
-{#    <a href="{% url 'task_track_add' %}" class="btn btn-outline-light">Add entry</a>#}
-{#    <a href="{% url 'type_ls' %}" class="btn btn-outline-light">Types list</a>#}
-{#    <a href="{% url 'status_ls' %}" class="btn btn-outline-light">Statuses list</a>#}
-{#{% endblock %}#}
+{% block menu %}
+    <a href="{% url 'project_create' %}" class="btn btn-outline-light">Add project</a>
+{% endblock %}
 
 {% block content %}
     <h1 class="mt-5">Projects</h1>
@@ -18,8 +16,8 @@
             <div class="container">
                 <h4>{{ project.title }} </h4>
                 <div class="container mb-5">{{ project.description }}</div>
-{#                <a href="{% url 'task_track' tracker.pk %}" class="btn btn-outline-success">More</a>#}
-{#                <a href="{% url 'task_track_edit' tracker.pk %}" class="btn btn-outline-success">Edit</a>#}
+                <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-success">More</a>
+{#                <a href="{% url 'project_create' project.pk %}" class="btn btn-outline-success">Edit</a>#}
 {#                <a href="{% url 'task_track_delete' tracker.pk %}" class="btn btn-outline-success">Delete</a>#}
             </div>
         {% endfor %}
