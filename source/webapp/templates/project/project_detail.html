@@ -2,14 +2,36 @@
 
 {% block title %}{{ project.title }}{% endblock %}
 
-{#{% block menu %}#}
-{#    <a href="{% url "task_track_edit" tracker.pk %}" class="btn btn-outline-light">Edit</a>#}
-{#    <a href="{% url "task_track_delete" tracker.pk %}" class="btn btn-outline-light">Delete</a>#}
-{#{% endblock %}#}
+{% block menu %}
+    <a href="{% url "project_edit" project.pk %}" class="btn btn-outline-light">Edit</a>
+    <a href="{% url "project_delete" project.pk %}" class="btn btn-outline-light">Delete</a>
+{% endblock %}
 
 {% block content %}
     <h1 class="mt-2">{{ project.title }}</h1>
     <div class="pre">{{ project.description }}</div>
     <p>Created at: {{ project.created_at }}</p>
+    <hr/>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+        {% for tracker in project.tracker.all %}
+            <div class="tracker_for_project">
+                <h4>{{ tracker.summary }}</h4>
+                <p>{{ tracker.description }}</p>
+                <p>Type: {{ tracker.type }}</p>
+                <p>Status: {{ tracker.status }}</p>
+                <p class="comment-links">
+                    <a href="{% url 'task_track' tracker.pk %}" class="btn btn-outline-light">More</a>
+                    <a href="{% url 'task_track_edit' tracker.pk %}" class="btn btn-outline-light">Edit</a>
+                    <a href="{% url 'task_track_delete' tracker.pk %}" class="btn btn-outline-light">Delete</a>
+                </p>
+            </div>
+        {% empty %}
+            <p>No task tracks</p>
+        {% endfor %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
     <a href="{% url 'project_ls' %}"class="btn btn-outline-success btn-block">Back</a>
 {% endblock %}

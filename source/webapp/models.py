@@ -12,16 +12,6 @@ class Tracker(models.Model):
     def __str__(self):
         return self.summary
 
-class Project(models.Model):
-    title = models.CharField(max_length=100, null=False, blank=False, verbose_name='Title')
-    description = models.TextField(max_length=2500, null=True, blank=True, verbose_name='Description')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated at')
-
-    def __str__(self):
-        return self.title
-
-
 class Status(models.Model):
     status = models.CharField(max_length=30, null=False, blank=False, verbose_name='Status')
 
@@ -34,3 +24,13 @@ class Type(models.Model):
 
     def __str__(self):
         return self.type
+
+
+class Project(models.Model):
+    title = models.CharField(max_length=100, null=False, blank=False, verbose_name='Title')
+    description = models.TextField(max_length=2500, null=True, blank=True, verbose_name='Description')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated at')
+
+    def __str__(self):
+        return self.title

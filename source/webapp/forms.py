@@ -10,7 +10,7 @@ class ProjectForm(forms.ModelForm):
 class TrackerForm(forms.ModelForm):
     class Meta:
         model = Tracker
-        fields = ['summary', 'description', 'status', 'type']
+        fields = ['summary', 'description', 'status', 'type', 'project_id']
 
 
 class TypeForm(forms.ModelForm):

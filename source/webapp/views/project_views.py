@@ -1,8 +1,9 @@
+from django.core.paginator import Paginator
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
-from webapp.models import Project
-from webapp.forms import ProjectForm
+from webapp.models import Project, Tracker
+from webapp.forms import ProjectForm, TrackerForm
 
 
 class ProjectView(ListView):
@@ -17,6 +18,22 @@ class ProjectDetailView(DetailView):
     context_key = 'project'
     model = Project
     key_kwarg = 'pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = TrackerForm()
+        trackers = context['project'].tracker.order_by('-created_at')
+        self.paginate_comments_to_context(trackers, context)
+        return context
+
+    def paginate_comments_to_context(self, trackers, context):
+        paginator = Paginator(trackers, 8)
+        page_number = self.request.GET.get('page', 1)
+        page = paginator.get_page(page_number)
+        context['paginator'] = paginator
+        context['page_obj'] = page
+        context['trackers'] = page.object_list
+        context['is_paginated'] = page.has_other_pages()
 
 
 class ProjectCreateView(CreateView):
