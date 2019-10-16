@@ -27,16 +27,15 @@ class ProjectCreateView(CreateView):
     form_class = ProjectForm
     success_url = reverse_lazy('project_ls')
 
-#
-# class TaskTrackerUpdateView(UpdateView):
-#     model = Tracker
-#     template_name = 'tracker/update.html'
-#     form_class = TrackerForm
-#     context_object_name = 'task_tracker'
-#
-#     def get_success_url(self):
-#         return reverse('task_track', kwargs={'pk': self.object.pk})
-#
+
+class ProjectUpdateView(UpdateView):
+    model = Project
+    template_name = 'project/project_update.html'
+    form_class = ProjectForm
+    context_object_name = 'project'
+    success_url = reverse_lazy('project_ls')
+
+
 #
 # class TaskTrackerDeleteView(DeleteView):
 #     template_name = 'tracker/delete.html'

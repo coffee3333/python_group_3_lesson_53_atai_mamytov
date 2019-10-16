@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Project Tracker{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-light">View</a>
+{% endblock %}
+
+{% block content %}
+    <h1>Update Project Tracker</h1>
+    <form method="POST" action="{% url 'project_edit' project.pk %}">
+        {% include 'partial/task_tracker_form.html' with button_text="Update" %}
+    </form>
+    <a href="{% url 'project_ls' %}"class="btn btn-outline-success btn-block">Back</a>
+{% endblock %}
