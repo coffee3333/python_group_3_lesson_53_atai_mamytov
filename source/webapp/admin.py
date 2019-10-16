@@ -1,5 +1,5 @@
 from django.contrib import admin
-from webapp.models import Tracker, Type, Status
+from webapp.models import Tracker, Type, Status, Project
 
 class TrackerAdmin(admin.ModelAdmin):
     list_display = ['summary', 'description', 'type', 'status', 'created_at']
@@ -8,3 +8,4 @@ class TrackerAdmin(admin.ModelAdmin):
 admin.site.register(Tracker, TrackerAdmin)
 admin.site.register(Type)
 admin.site.register(Status)
+admin.site.register(Project)

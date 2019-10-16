@@ -1,11 +1,11 @@
 from django.db.models.deletion import ProtectedError
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from webapp.models import Status
 from webapp.forms import StatusForm
-from webapp.views import UpdateView, DeleteView, reverse_lazy
+from webapp.views import reverse_lazy
 
 
 class StatusView(ListView):
