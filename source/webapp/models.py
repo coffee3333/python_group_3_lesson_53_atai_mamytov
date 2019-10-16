@@ -1,5 +1,15 @@
 from django.db import models
 
+
+class Project(models.Model):
+    title = models.CharField(max_length=100, null=False, blank=False, verbose_name='Title')
+    description = models.TextField(max_length=2500, null=True, blank=True, verbose_name='Description')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Created at')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated at')
+
+    def __str__(self):
+        return self.title
+
 class Tracker(models.Model):
     summary = models.CharField(max_length=100, null=False, blank=False, verbose_name='Summary')
     description = models.TextField(max_length=2500, null=True, blank=True, verbose_name='Description')
