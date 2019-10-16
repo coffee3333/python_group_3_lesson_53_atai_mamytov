@@ -9,9 +9,7 @@ class ProjectView(ListView):
     context_object_name = 'projects'
     model = Project
     template_name = 'project/project_ls.html'
-    ordering = ['-created_at']
-    paginate_by = 5
-    paginate_orphans = 1
+    ordering = ['created_at']
 
 
 class ProjectDetailView(DetailView):
@@ -36,9 +34,8 @@ class ProjectUpdateView(UpdateView):
     success_url = reverse_lazy('project_ls')
 
 
-#
-# class TaskTrackerDeleteView(DeleteView):
-#     template_name = 'tracker/delete.html'
-#     model = Tracker
-#     context_object_name = 'task_tracker'
-#     success_url = reverse_lazy('index')
+class ProjectDeleteView(DeleteView):
+    template_name = 'project/project_delete.html'
+    model = Project
+    context_object_name = 'project'
+    success_url = reverse_lazy('project_ls')

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Project Tracker{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-light">View</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="mt-5">Do you want to delete project: '{{ project.title }}' ?</h2>
+        <form method="POST" action="{% url 'project_delete' project.pk %}">
+            {% csrf_token %}
+            <p><input type="submit" value="Confirm" class="btn btn-outline-success btn-block"></p>
+            <p><a href="{% url 'project_ls' %}" class="btn btn-outline-success btn-block">Back</a></p>
+        </form>
+    </div>
+{% endblock %}

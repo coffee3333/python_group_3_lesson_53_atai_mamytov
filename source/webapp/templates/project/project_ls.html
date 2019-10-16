@@ -18,7 +18,7 @@
                 <div class="container mb-5">{{ project.description }}</div>
                 <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-success">More</a>
                 <a href="{% url 'project_edit' project.pk %}" class="btn btn-outline-success">Edit</a>
-{#                <a href="{% url 'task_track_delete' tracker.pk %}" class="btn btn-outline-success">Delete</a>#}
+                <a href="{% url 'project_delete' project.pk %}" class="btn btn-outline-success">Delete</a>
             </div>
         {% endfor %}
     </div>
